@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Drives{% endblock %}
+
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="drives" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-12">
+          <div class="card">
+
+              <div class="card-header text-center bg-red"><h2>Drives</h2></div>
+
+              <div class="card-body text-center" style="overflow-x:auto;">
+                <table class="table table-inline table-hover" style="font-size: 20px;">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name of drive</th>
+                      <th>Type of drive</th>
+                      <th>Date of drive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in drives %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td><a class="a" href="{% url 'drive' i.id %}">{{i.name}}</a></td>
+                      <td>{{i.get_drive_type_display}}</td>
+                      <td>{{i.drive_on}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+             </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

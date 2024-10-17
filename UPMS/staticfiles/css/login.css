@@ -1,0 +1,91 @@
+
+/* BASIC */
+
+@media (max-width : 500px) {
+  .logo {
+    padding-top: 40%!important;
+  }
+
+  .logo img{
+    height: 25%!important;
+    width: 50%!important;
+  }
+  .h1 {
+    font-size: 2rem !important;
+  }
+
+  .lgn input {
+      width: 60% !important;
+      font-size: 80% !important;
+  }
+
+  .btn-danger {
+    width: 60% !important;
+  }
+
+  .new-msg {
+    padding-top: 2% !important;
+  }
+  .logo-s {
+    width: 75% !important;
+    height: 100% !important;
+  }
+
+  .logo svg {
+    width: 15% !important;
+    height: 105px !important;
+    margin-top: 0% !important;
+  }
+
+  .logo-text-h1 {
+    font-size: 80px !important;
+  }
+
+}
+  
+body {
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+.logo svg {
+  width: 7%;
+  height: 125px;
+  margin-top: 2%;
+}
+
+.logo-text-h1 {
+  font-size: 150px;
+}
+
+.form-rounded {
+  border-radius: 1rem;
+}
+
+.btn-danger {
+  width: 30%;
+  /* font-family: Raleway-SemiBold; */
+  font-size: 13px;
+  /* color: rgba(217, 83, 78, 0.75); */
+  /* letter-spacing: 1px; */
+  line-height: 20px;
+  border: 2px solid rgba(217, 83, 78, 0.75);
+  border-radius: 40px;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-danger:hover {
+  color: #FFF;
+  background: rgba(217, 83, 78, 0.75);
+  border: 2px solid rgba(217, 83, 78, 0.75);
+}
+
+.lgn {
+  margin: 2%;
+}
+
+.lgn input {
+  width: 30%;
+  font-size: 80%;
+}

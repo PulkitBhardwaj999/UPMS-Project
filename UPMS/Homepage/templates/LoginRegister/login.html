@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/login.css'%}"/>
+    
+    <title>Login - UPMS</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="content-wrapper">
+        <div class="content">
+
+          <div class="d-flex logo justify-content-center" style="padding-top: 10%;">
+            <svg width="100" height="100" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="-0.757324" y="19.2428" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2428)" fill="#3A57E8"/>
+              <rect x="7.72803" y="27.7281" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.7281)" fill="#3A57E8"/>
+              <rect x="10.5366" y="16.3946" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3946)" fill="#3A57E8"/>
+              <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="#3A57E8"/>
+            </svg>
+            <div class="text-white logo-text" style="align-self: center;">
+              <a class="logo-text-h1">
+                <a class="logo-text-h1" style="color: #dc3545;">UPMS</a>
+              </a>
+            </div>
+              
+            <!-- <img style="width: 25%; height: 25%;" src="{% static 'images/logo.png' %}" alt="Logo">               -->
+          </div>
+          <div class="d-flex justify-content-center" style="padding-top: 1%;">
+            <h1 style="color: white;">Log in</h1>
+          </div>
+          <div class="d-flex justify-content-center" style="padding-top: 1%;">
+            <h6 style="color: white;">Welcome to University Placement</h6>
+          </div>
+          <div class="d-flex justify-content-center">
+            <h6 style="color: white;">Management System</h6>
+          </div>
+          
+          <div class="container text-center" style="position: relative;">
+            <form method="POST" action = "{% url 'login' %}">
+              {% csrf_token %}
+              <div class="row lgn" style="place-content: center;">
+                <input type="text" class="form-control form-rounded center" name="uid" placeholder="login" required>
+              </div>
+              <div class="row lgn" style="place-content: center;">
+                <input type="password" class="form-control form-rounded center" name="password" placeholder="password" required>
+              </div>
+              <p class="form-error" style="color:greenyellow">{{message}}</p>
+              <div class="row lgn" style="place-content: center;">
+                <button type="submit" class="btn btn-danger">LOGIN</button>
+              </div>
+            </form>
+          </div>
+          <div class="text-center new-msg">
+            <a class="text-white">Don't have a account?</a>
+          </div>
+          <div class="text-center">
+            <a class="text-white text-center" href="{% url 'register' %}">Register Now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

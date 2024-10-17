@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}HomePage{% endblock %}
+
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="drives" %}
+{% endblock %}
+
+{% block stylesheets %}
+  {% include 'adminlte/lib/_styles.html' %}
+  <style>
+    @media (max-width : 1000px) {
+      .apply-btn {
+        width: 50% !important;
+      }
+    }
+    .apply-btn {
+      width: 25%
+    }
+  </style>
+  <link rel="stylesheet" href="{% static '/css/loader.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-12">
+          <div class="card">
+
+              <div class="card-header text-center bg-red"><h2>Apply to {{drive_data.name}}</h2></div>
+
+              <div class="card-body p-5">
+
+                <hr style="background: #E9ECEF; border: 1px solid #343948; width: 80%;">
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Unique Drive ID:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.id}}</a>
+                  </div>
+                </div>
+              
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Name of company:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.name}}</a>
+                  </div>
+                </div>
+
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Date of drive:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.drive_on}}</a>
+                  </div>
+                </div>
+
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Type of drive:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.get_drive_type_display}}</a>
+                  </div>
+                </div>
+
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Batch year:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.batch_year}}</a>
+                  </div>
+                </div>
+
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Required streams:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.get_stream_required_display}}</a>
+                  </div>
+                </div>
+
+                <div class="row py-2">
+                  <div class="col-md-6">
+                    <b style="font-size: 25px">Eligibility:</b> 
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <a style="font-size: 25px;">{{drive_data.eligibility}}</a>
+                  </div>
+                </div>
+                
+                <hr style="background: #E9ECEF; border: 1px solid #343948; width: 80%;">
+
+                {% if request.user.is_student %}
+                <div class="text-center">
+                  <a href="{% url 'apply_drive' drive_data.id %}" class="btn apply-btn btn-lg btn-success">Apply</a>
+                </div>
+                {% elif request.user.is_superuser or request.user.is_coordinator %}
+                <div class="text-center">
+                  <a href="{% url 'apply_drive' drive_data.id %}" class="btn btn-lg btn-success">Apply</a>
+                  <a href="{% url 'drive_responses' drive_data.id %}" class="btn btn-lg btn-success">Responses</a>
+                  <a href="{% url 'update_drive' drive_data.id %}" class="btn btn-lg btn-success">Manage Drive</a>
+                  <a href="{% url 'delete_drive' drive_data.id %}" class="btn btn-lg btn-danger">Delete Drive</a>
+                </div>
+                {% endif %}
+
+             </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

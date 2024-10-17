@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="Homepage" %}
+{% endblock %}
+ 
+{% block stylesheets %}
+{% include 'adminlte/lib/_styles.html' %}
+  <link rel="stylesheet" href="{% static '/css/loader.css' %}">
+{% endblock %}
+
+{% block content_header %}
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+  .circle-wrap .inside-circle {
+  width: 122px;
+  height: 122px;
+  border-radius: 50%;
+  background: #d2eaf1;
+  line-height: 120px;
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 14px;
+  color: #1e51dc;
+  position: absolute;
+  z-index: 100;
+  font-weight: 700;
+  font-size: 2em;
+}
+</style>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-12">
+      <div class="card" style="background-color: #dc3545;">
+        <div class="card-body">
+          <div class="text-white" >
+            <h1>Hello {{request.user.first_name}}!</h1>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center">
+            <h1>Admin Dashboard</h1>
+            <br>
+            <div class="wrapper" data-anim="base wrapper">
+              <div class="circle" data-anim="base left"></div>
+              <div class="circle" data-anim="base right"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-2 mr-4">
+      <div class="card bg-red" style="border: 1px solid black; border-radius: 20px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-center">
+            <div col-sm-5>
+              <i class="fa-4x fa-solid fa-book-open-reader"></i>                                          
+            </div>
+            <div col-sm-5>
+              <h6 class="text-right">Total Departments</h6>
+              <h3 class="text-right">{{departments.count}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-sm-2 mr-4">
+    <div class="card text-white" style="border: 1px solid black; border-radius: 20px; background-color: #957bbe;">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div col-sm-2>
+            <i class="fa-4x fa-solid fa-user"></i>           
+          </div>
+          <div col-sm-2>
+            <h6 class="text-right">Total Students</h6>
+            <h3 class="text-right">{{students.count}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2 mr-4">
+    <div class="card bg-orange" style="border: 1px solid black; border-radius: 20px; color: white !important;">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div col-sm-2>
+            <i class="fa-4x fa-solid fa-building"></i>                                
+          </div>
+          <div col-sm-2>
+            <h6 class="pl-3 text-right">Total Companies</h6>
+            <h3 class="text-right">{{companies.count}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2 mr-4">
+    <div class="card bg-blue" style="border: 1px solid black; border-radius: 20px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div col-sm-2>
+            <i class="fa-4x fa-solid fa-graduation-cap"></i>                                  
+          </div>
+          <div col-sm-2>
+            <h6 class="text-right">Placed Students</h6>
+            <h3 class="text-right">{{placed_students.count}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2 mr-4">
+    <div class="card bg-green" style="border: 1px solid black; border-radius: 20px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div col-sm-2>
+            <i class="fa-4x fa-solid fa-book"></i>                                
+          </div>
+          <div col-sm-2>
+            <h6 class="pl-3 text-right">Job Offers</h6>
+            <h3 class="text-right">{{offer_letters.count}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex">
+
+  <!-- Announcements -->
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Announcements</h3>
+      </div>
+      <div class="card-body" style="height: 425px; overflow-y: scroll;">
+        {% for i in announcements %}
+          <div>
+            <b style="font-size: 18px">{{i.title}}</b>
+            <a class="float-right">{{i.created_on}}</a>
+            <br>
+            <h7>{{i.description|urlize}}</h7>
+            {% if not forloop.last %} <hr> {% endif %}
+          </div>
+        {% endfor %}        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ss -->
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Placed / Unplaced</h3>
+      </div>
+      <div class="card-body py-5">
+          <canvas id="myChartBar"></canvas>        
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">PLACED / UNPLACED</h3>
+      </div>
+      <div class="card-body"  >
+        <canvas id="myChartline"></canvas>
+      </div>
+    </div>
+  </div> -->
+
+  
+  
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+  var endpoint = '/api/';
+
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+      drawLineGraph(data, 'myChartline');
+      // drawBarGraph(data, 'myChartBar');
+      console.log("drawing");
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+  })
+
+  $.ajax({
+    method: "GET",
+    url: '/api/PlacedUnplaced/',
+    success: function(data) {
+      drawBarGraph(data, 'myChartBar');
+      console.log(data);
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+  })
+
+  function drawLineGraph(data, id) {
+    var labels = data.labels;
+    var chartLabel = data.chartLabel;
+    var chartdata = data.chartdata;
+    var ctx = document.getElementById(id).getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+        labels: labels,
+        datasets: [{
+          label: chartLabel,
+          backgroundColor: 'rgb(255, 100, 200)',
+          borderColor: 'rgb(55, 99, 132)',
+          data: chartdata,
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+    });
+  }
+
+  function drawBarGraph(data, id) {
+    var labels = data.labels;
+    var chartLabel = data.chartLabel;
+    var chartdata = data.chartdata;
+    var ctx = document.getElementById(id).getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: chartLabel,
+          data: chartdata,
+          backgroundColor: [
+            'red',
+            'blue'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  }
+
+</script>
+
+{% endblock %}
+`

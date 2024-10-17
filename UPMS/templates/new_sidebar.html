@@ -1,0 +1,219 @@
+{% load adminlte_helpers %}
+{%load static %}
+
+{% block stylesheets %}
+<!-- <link rel="stylesheet" href="{% static 'css/sidebar.css'%}"/> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+<style>
+    .nav-item hr {
+        background: #E9ECEF;
+        border: 1px solid #343948;
+        width: 90%;
+    }
+</style>
+<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+     <!-- Brand Logo -->
+    {% block logo %}
+        <a href="/" class="brand-link d-flex justify-content-center">
+            <svg width="132" height="30" viewBox="0 0 132 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="-0.757324" y="19.2428" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2428)" fill="#3A57E8"/>
+                <rect x="7.72803" y="27.7281" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.7281)" fill="#3A57E8"/>
+                <rect x="10.5366" y="16.3946" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3946)" fill="#3A57E8"/>
+                <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="#3A57E8"/>
+                <path d="M55.0703 3.5H58.7031V19.2852C58.7031 20.9648 58.3086 22.4531 57.5195 23.75C56.7305 25.0391 55.6211 26.0547 54.1914 26.7969C52.7617 27.5313 51.0859 27.8984 49.1641 27.8984C47.25 27.8984 45.5781 27.5313 44.1484 26.7969C42.7188 26.0547 41.6094 25.0391 40.8203 23.75C40.0313 22.4531 39.6367 20.9648 39.6367 19.2852V3.5H43.2578V18.9922C43.2578 20.0781 43.4961 21.043 43.9727 21.8867C44.457 22.7305 45.1406 23.3945 46.0234 23.8789C46.9063 24.3555 47.9531 24.5937 49.1641 24.5937C50.3828 24.5937 51.4336 24.3555 52.3164 23.8789C53.207 23.3945 53.8867 22.7305 54.3555 21.8867C54.832 21.043 55.0703 20.0781 55.0703 18.9922V3.5ZM63.9678 27.5V3.5H72.5225C74.3896 3.5 75.9365 3.83984 77.1631 4.51953C78.3896 5.19922 79.3076 6.12891 79.917 7.30859C80.5264 8.48047 80.8311 9.80078 80.8311 11.2695C80.8311 12.7461 80.5225 14.0742 79.9053 15.2539C79.2959 16.4258 78.374 17.3555 77.1396 18.043C75.9131 18.7227 74.3701 19.0625 72.5107 19.0625H66.6279V15.9922H72.1826C73.3623 15.9922 74.3193 15.7891 75.0537 15.3828C75.7881 14.9687 76.3271 14.4062 76.6709 13.6953C77.0146 12.9844 77.1865 12.1758 77.1865 11.2695C77.1865 10.3633 77.0146 9.55859 76.6709 8.85547C76.3271 8.15234 75.7842 7.60156 75.042 7.20313C74.3076 6.80469 73.3389 6.60547 72.1357 6.60547H67.5889V27.5H63.9678ZM85.0762 3.5H89.4707L97.1113 22.1562H97.3926L105.033 3.5H109.428V27.5H105.982V10.1328H105.76L98.6816 27.4648H95.8223L88.7441 10.1211H88.5215V27.5H85.0762V3.5ZM127.782 9.80469C127.657 8.69531 127.142 7.83594 126.235 7.22656C125.329 6.60937 124.188 6.30078 122.813 6.30078C121.829 6.30078 120.978 6.45703 120.259 6.76953C119.54 7.07422 118.981 7.49609 118.583 8.03516C118.192 8.56641 117.997 9.17187 117.997 9.85156C117.997 10.4219 118.13 10.9141 118.396 11.3281C118.669 11.7422 119.024 12.0898 119.462 12.3711C119.907 12.6445 120.384 12.875 120.892 13.0625C121.399 13.2422 121.888 13.3906 122.356 13.5078L124.7 14.1172C125.466 14.3047 126.251 14.5586 127.056 14.8789C127.86 15.1992 128.606 15.6211 129.294 16.1445C129.981 16.668 130.536 17.3164 130.958 18.0898C131.388 18.8633 131.603 19.7891 131.603 20.8672C131.603 22.2266 131.251 23.4336 130.548 24.4883C129.853 25.543 128.841 26.375 127.513 26.9844C126.192 27.5938 124.595 27.8984 122.72 27.8984C120.923 27.8984 119.368 27.6133 118.056 27.043C116.743 26.4727 115.716 25.6641 114.974 24.6172C114.231 23.5625 113.821 22.3125 113.743 20.8672H117.376C117.446 21.7344 117.728 22.457 118.22 23.0352C118.72 23.6055 119.356 24.0312 120.13 24.3125C120.911 24.5859 121.767 24.7227 122.696 24.7227C123.72 24.7227 124.63 24.5625 125.427 24.2422C126.231 23.9141 126.864 23.4609 127.325 22.8828C127.786 22.2969 128.017 21.6133 128.017 20.832C128.017 20.1211 127.813 19.5391 127.407 19.0859C127.009 18.6328 126.466 18.2578 125.778 17.9609C125.099 17.6641 124.329 17.4023 123.47 17.1758L120.634 16.4023C118.712 15.8789 117.188 15.1094 116.063 14.0938C114.946 13.0781 114.388 11.7344 114.388 10.0625C114.388 8.67969 114.763 7.47265 115.513 6.4414C116.263 5.41015 117.278 4.60937 118.56 4.03906C119.841 3.46094 121.286 3.17187 122.896 3.17187C124.521 3.17187 125.954 3.45703 127.196 4.02734C128.446 4.59766 129.431 5.38281 130.149 6.38281C130.868 7.375 131.243 8.51562 131.274 9.80469H127.782Z" fill="url(#paint0_linear_0_1)" style="mix-blend-mode:darken"/>
+                <defs>
+                <linearGradient id="paint0_linear_0_1" x1="85.5" y1="-6.5" x2="85.5" y2="36.5" gradientUnits="userSpaceOnUse">
+                <stop offset="0.255208" stop-color="#FE0000" stop-opacity="0.83"/>
+                <stop offset="0.947917" stop-color="#E62B2B" stop-opacity="0.29"/>
+                </linearGradient>
+                </defs>
+            </svg>
+        </a>
+    {% endblock %}
+    <!-- sidebar: style can be found in sidebar.less -->
+    <div class="sidebar">
+        <!-- Sidebar user panel -->
+        
+
+        {% block form %}{% endblock %}
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        {% block nav_links_ul %}
+        <nav class="mt-2 sticky">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            {% block nav_links_outer %}
+            <li class="nav-header">{% block nav_heading %}{% if request.user.is_student %} Student Home {% else %} Admin Home {% endif %}{% endblock %}</li>
+
+            {% block nav_links %}
+                <li class="nav-item">
+                    <a href="{% url 'homepage' %}" class="nav-link {% if active == 'Homepage' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i> 
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr>
+                </li>
+                <li class="nav-header pt-0 pl-1">Pages</li>
+                {% if request.user.is_superuser or request.user.is_coordinator %}
+                <li class="nav-item">
+                    <a href="{% url 'create_drive' %}" class="nav-link {% if active == 'create_drive' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-circle-plus"></i> 
+                        <p>Create Drives</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'drives' %}" class="nav-link {% if active == 'drives' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-briefcase"></i> 
+                        <p>Drives</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'profile' request.user.username %}" class="nav-link {% if active == 'profiles' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-user"></i> 
+                        <p>My Profile</p>
+                    </a>
+                </li>
+                {% if request.user.is_superuser or request.user.is_coordinator %}
+                <li class="nav-item">
+                    <a href="{% url 'users' %}" class="nav-link {% if active == 'users' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-users"></i> 
+                        <p>Users</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr>
+                </li>
+                {% endif %}
+                <li class="nav-header pt-0 pl-1">Coordinator</li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a href="{% url 'create_coordinator' %}" class="nav-link {% if active == 'create_coordinator' %} bg-red active {% endif %}">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                        <p>Add Coordinators</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'coordinators' %}" class="nav-link {% if active == 'coordinators' %} bg-red active {% endif %}">
+                        <i class="fa-solid fa-rectangle-list"></i>
+                        <p>Coordinators List</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr>
+                </li>
+                <li class="nav-header pt-0 pl-1">Departments</li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a href="{% url 'add_departments' %}" class="nav-link {% if active == 'add_departments' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-house-user"></i> 
+                        <p>Add Department</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'list_departments' %}" class="nav-link {% if active == 'departments' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-building-user"></i> 
+                        <p>Department List</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <hr>
+                </li>
+                <li class="nav-header pt-0 pl-1">Courses</li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a href="{% url 'add_courses' %}" class="nav-link {% if active == 'add_courses' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-scroll-torah"></i> 
+                        <p>Add Course</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'list_courses' %}" class="nav-link {% if active == 'courses' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-book-open"></i> 
+                        <p>Courses List</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr>
+                </li>
+
+                <li class="nav-header pt-0 pl-1">Companies</li>
+                {% if request.user.is_superuser or request.user.is_coordinator %}
+                <li class="nav-item">
+                    <a href="{% url 'add_companies' %}" class="nav-link {% if active == 'add_companies' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-globe"></i> 
+                        <p>Add Company</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'list_companies' %}" class="nav-link {% if active == 'companies' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-users"></i> 
+                        <p>Companies List</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <hr>
+                </li>
+                <!-- <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i> 
+                            <p>Example link active</p>
+                        </a>
+                    </li>
+                <li class="nav-item has-tree-view ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-object-group"></i> <p>Sub menu</p>
+                        <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-circle"></i> link
+                                    </a>
+                                </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-user"></i> Another link
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li class="nav-header pt-0 pl-1">Anouncements</li>
+                {% if request.user.is_superuser or request.user.is_coordinator %}
+                <li class="nav-item">
+                    <a href="{% url 'add_announcements' %}" class="nav-link {% if active == 'add_announcement' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-users"></i> 
+                        <p>Add Announcement</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'list_announcements' %}" class="nav-link {% if active == 'announcements' %} bg-red active {% endif %}">
+                        <i class="nav-icon fas fa-users"></i> 
+                        <p>Anouncements List</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <hr>
+                </li>
+            {% endblock nav_links %}
+            {% endblock nav_links_outer %}
+            </ul>
+        </nav>
+        {% endblock nav_links_ul %}
+    </div>
+    <!-- /.sidebar -->
+</aside>

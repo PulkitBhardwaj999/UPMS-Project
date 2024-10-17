@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="courses" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="cotainer">
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <div class="card">
+
+              <div class="card-header text-center bg-red"><h2>Course List</h2></div>
+
+              <div class="card-body" style="overflow-x:auto;">
+                <table class="table table-inline table-hover table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">NAME</th>
+                      <th scope="col">Department</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in courses %}
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.name}}</td>
+                        <td>{{i.department}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

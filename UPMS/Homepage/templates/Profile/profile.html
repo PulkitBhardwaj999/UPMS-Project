@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block stylesheets %}
+    {% include 'adminlte/lib/_styles.html' %}
+    <link rel="stylesheet" href="{% static '/css/loader.css' %}">
+    <style>
+      .data {
+        /* background: black; */
+        color: black;
+        padding-top: 10%;
+        padding-bottom: 10%;
+      }
+      .data p {
+        font-size: 20px;
+      }
+    </style>
+{% endblock %}
+
+{% block nav_sidebar %}
+    {% if user.username == request.user.username %}
+      {% include 'new_sidebar.html' with active="profiles" %}
+    {% else %}
+      {% include 'new_sidebar.html' with active="users" %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if message %}
+
+<div class="cotainer">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-center">
+                <h1>{{message}}</h1>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% else %}
+
+  <div class="cotainer">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+              <div class="card-body bg-dark">
+                <div class="d-flex justify-content-center">
+                  <h1>{{user}}'s profile:</h1>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+<div class="cotainer">
+  <div class="row justify-content-center">
+    <!-- General info -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>General Info</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="uid" class="col-md-6 col-form-label text-center">UID:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.username}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="first_name" class="col-md-6 col-form-label text-center">Firstname:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.first_name}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="last_name" class="col-md-6 col-form-label text-center">Lastname:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.last_name}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="dob" class="col-md-6 col-form-label text-center">DOB:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.dob}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="gender" class="col-md-6 col-form-label text-center">Gender:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.get_gender_display}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="course" class="col-md-6 col-form-label text-center">Course:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.course_name}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="department" class="col-md-6 col-form-label text-center">Department:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.course_name.department.name}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>Contact Info</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="uid" class="col-md-6 col-form-label text-center">Mobile:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.mobile}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="first_name" class="col-md-6 col-form-label text-center">Whatsapp no:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.whatsapp}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="email" class="col-md-6 col-form-label text-center">Email:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.email}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="address" class="col-md-6 col-form-label text-center">Address:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.address}}
+            </div>
+          </div>
+          <hr/>
+          <div class="form-group row">
+            <label for="city" class="col-md-6 col-form-label text-center">City:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.city}}
+            </div>
+          </div>
+
+          <hr/>
+          <div class="form-group row">
+            <label for="pincode" class="col-md-6 col-form-label text-center">Pincode:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.pincode}}
+            </div>
+          </div>
+
+          <hr/>
+          <div class="form-group row">
+            <label for="state" class="col-md-6 col-form-label text-center">State:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.state}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {% if user.is_student %}
+    <!-- SSC -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>SSC</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="10-board" class="col-md-6 col-form-label text-center">10th Board:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.ssc}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="10-pass" class="col-md-6 col-form-label text-center">10th Year:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ssc_year}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="10-per" class="col-md-6 col-form-label text-center">10th Percentage:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ssc_percentage}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="10-cgpa" class="col-md-6 col-form-label text-center">10th CGPA:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ssc_cgpa}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HSSC -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>HSSC</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="12-board" class="col-md-6 col-form-label text-center">12th Board:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.hssc}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="12-pass" class="col-md-6 col-form-label text-center">12th Year:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.hssc_year}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="12-per" class="col-md-6 col-form-label text-center">12th Percentage:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.hssc_percentage}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="uid" class="col-md-6 col-form-label text-center">12th CGPA:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.hssc_cgpa}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HSSC -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>UG</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="ug" class="col-md-6 col-form-label text-center">College/University:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.ug}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="ug-pass" class="col-md-6 col-form-label text-center">UG Year:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ug_year}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="ug-per" class="col-md-6 col-form-label text-center">UG Percentage:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ug_percentage}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="ug-cgpa" class="col-md-6 col-form-label text-center">UG CGPA:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.ug_cgpa}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PG -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center bg-red"><h2>PG</h2></div>
+        <div class="card-body">
+          <div class="form-group row">
+              <label for="pg" class="col-md-6 col-form-label text-center">College/University:</label>
+              <div class="col-md-6 mt-2 text-center">
+                {{user.pg}}
+              </div>
+          </div>
+          <hr/>
+            
+          <div class="form-group row">
+            <label for="pg-pass" class="col-md-6 col-form-label text-center">PG Year:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.pg_year}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="pg-per" class="col-md-6 col-form-label text-center">PG Percentage:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.pg_percentage}}
+            </div>
+          </div>
+          <hr/>
+
+          <div class="form-group row">
+            <label for="pg_cgpa" class="col-md-6 col-form-label text-center">PG CGPA:</label>
+            <div class="col-md-6 mt-2 text-center">
+              {{user.pg_cgpa}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+
+
+<div class="cotainer">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+            <div class="card-body bg-dark py-5">
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+<footer class="main-footer bg-red">
+    <div class="float-right d-none d-sm-block">
+        {% block footer_right %}
+            <b>Version</b> {% block version %}1.0{% endblock %}
+        {% endblock %}
+    </div>
+
+    {% block footer_left %}
+        {% block legal %}
+        <strong>Copyright &copy; {% now "Y" %}{% if not site %}.{% endif %}
+            {% if site %}
+                <a href="http://{{ site.domain }}">{{ site.name }}</a>
+            {% endif %}
+        </strong> All rights
+        reserved.
+        {% endblock %}
+        
+    
+    {% endblock %}
+</footer>

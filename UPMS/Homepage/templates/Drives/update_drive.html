@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Drive{% endblock %}
+
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="drives" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="cotainer">
+  <div class="row justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+
+              <div class="card-header text-center bg-red"><h2>Update Drive</h2></div>
+              
+              <form method="POST" action = "{% url 'create_drive' %}">
+                  {% csrf_token %}
+                  <div class="card-body">
+                      <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">Name of Company:</label>
+                          <div class="col-md-6">
+                              <input type="text" id="name" name="name" class="form-control" value="{{drive.name}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="drive_type" class="col-md-4 col-form-label text-md-right">Drive Type:</label>
+                          <div class="col-md-6">
+                              <select required class="form-select" id="drive_type" name="drive_type" value="{{drive.drive_type}}" required>
+                                <option {% if i.drive_type == 1 %} selected {% endif %} value="1">Virtual</option>
+                                <option {% if i.drive_type == 2 %} selected {% endif %} value="2">On Campus</option>
+                                <option {% if i.drive_type == 3 %} selected {% endif %} value="3">Off Campus</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+
+                      <div class="form-group row">
+                          <label for="drive_on" class="col-md-4 col-form-label text-md-right">Drive Date:</label>
+                          <div class="col-md-6">
+                              <input type="date" id="drive_on" name="drive_on" class="form-control" value="{{drive.drive_on|date:"Y-m-d"}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="stream_required" class="col-md-4 col-form-label text-md-right">Drive For:</label>
+                          <div class="col-md-6">
+                              <select required class="form-select" id="stream_required" name="stream_required" value="{{drive.stream_required}}" required>
+                                <option {% if i.stream_required == 1 %} selected {% endif %} value="1">MCA</option>
+                                <option {% if i.stream_required == 2 %} selected {% endif %} value="2">BCA</option>
+                                <option {% if i.stream_required == 3 %} selected {% endif %} value="3">B Tech</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="batch_year" class="col-md-4 col-form-label text-md-right">Batch Year:</label>
+                          <div class="col-md-6">
+                              <input type="number" id="batch_year" name="batch_year" class="form-control" value="{{drive.batch_year}}">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="eligibility" class="col-md-4 col-form-label text-md-right">Eligibility:</label>
+                          <div class="col-md-6">
+                              <input type="number" id="eligibility" name="eligibility" class="form-control" value="{{drive.eligibility}}">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="position" class="col-md-4 col-form-label text-md-right">Position:</label>
+                          <div class="col-md-6">
+                              <input type="text" id="position" name="position" class="form-control" value="{{drive.position}}">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="job_profile" class="col-md-4 col-form-label text-md-right">Job profile:</label>
+                          <div class="col-md-6">
+                              <input type="text" id="job_profile" name="job_profile" class="form-control" value="{{drive.job_profile}}">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                          <label for="job_type" class="col-md-4 col-form-label text-md-right">Job Type:</label>
+                          <div class="col-md-6">
+                              <select required class="form-select" id="job_type" name="job_type" value="{{drive.job_type}}">
+                                  <option {% if i.job_type == 1 %} selected {% endif %} value="1">WFH</option>
+                                  <option {% if i.job_type == 2 %} selected {% endif %} value="2">Full Time</option>
+                                  <option {% if i.job_type == 3 %} selected {% endif %} value="3">Internship</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="job_location" class="col-md-4 col-form-label text-md-right">Job location:</label>
+                        <div class="col-md-6">
+                            <input type="text" id="job_location" name="job_location" class="form-control" value="{{drive.job_location}}">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="date_of_joining" class="col-md-4 col-form-label text-md-right">Date of joining (YYYY-MM-DD):</label>
+                          <div class="col-md-6">
+                              <input type="date" id="date_of_joining" name="date_of_joining" class="form-control" value="{{drive.date_of_joining|date:"Y-m-d"}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="package" class="col-md-4 col-form-label text-md-right">Stipend/Package:</label>
+                          <div class="col-md-6">
+                              <input type="text" id="package" name="package" class="form-control" value="{{drive.stipend_package}}">
+                          </div>
+                      </div>
+
+                      <div class="form-group row d-flex justify-content-center">
+                          <h4>{{message}}</h4>
+                      </div>
+
+                      
+                      <div class="col-md-3 float-right">
+                          <button type="submit" class="btn btn-danger">Update Drive</button>
+                      </div>
+
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

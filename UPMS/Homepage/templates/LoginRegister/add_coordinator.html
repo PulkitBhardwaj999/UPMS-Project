@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Add Coordinator {% endblock %}
+  
+{% block nav_sidebar %}
+  {% include 'new_sidebar.html' with active="create_coordinator" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+
+                <div class="card-header text-center bg-red"><h2>Add Coordinator</h2></div>
+                
+                <form method="POST" action = "{% url 'create_coordinator' %}">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="uid" class="col-md-4 col-form-label text-md-right">Emp ID:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="uid" name="uid" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">Department:</label>
+                            <div class="col-md-6">
+                                <select required class="form-select" id="department" name="department">
+                                    {% for i in departments %}
+                                        <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group row">
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">Firstname:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="first_name" name="first_name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right">Lastname:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="last_name" name="last_name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="email" name="email" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone Number:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="phone" name="phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="whatsapp" class="col-md-4 col-form-label text-md-right">Whatsapp Number:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="whatsapp" name="whatsapp" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="dob" class="col-md-4 col-form-label text-md-right">Date Of Birth:</label>
+                            <div class="col-md-6">
+                                <input type="date" id="dob" name="dob" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender:</label>
+                            <div class="col-md-6">
+                                <select required class="form-select" id="gender" name="gender">
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Address:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pincode" class="col-md-4 col-form-label text-md-right">Pin Code:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="pincode" name="pincode" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="state" class="col-md-4 col-form-label text-md-right">State:</label>
+                            <div class="col-md-6">
+                                <input type="text" id="state" name="state" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password:</label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="confirmPassword" class="col-md-4 col-form-label text-md-right">Confirm Password:</label>
+                            <div class="col-md-6">
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-flex justify-content-center">
+                            <h4>{{message}}</h4>
+                        </div>
+
+                        
+                        <div class="col-md-3 float-right">
+                            <button type="submit" class="btn btn-danger"> Add Coordinator </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

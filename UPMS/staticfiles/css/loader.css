@@ -1,0 +1,15 @@
+
+.no-display {
+    display: none;
+}
+
+.spi2 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0px;
+    height: 0px;
+    margin: auto;
+}
